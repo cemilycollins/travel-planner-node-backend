@@ -6,12 +6,10 @@ const router = express.Router();
 const Trip = mongoose.model('Trip', new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-    minlength: 5,
-    maxlength: 50
+    required: true
   },
-  start_date: { type: Date, required: true },
-  end_date: { type: Date, required: true },
+  start_date: { type: String, required: true },
+  end_date: { type: String, required: true },
   img_url: String
 }));
 
@@ -71,7 +69,10 @@ router.get('/:id', async (req, res) => {
 
 function validateTrip(trip) {
   const schema = {
-    name: Joi.string().min(3).required()
+    name: Joi.string().min(3).required(),
+    start_date: Joi.string(),
+    end_date: Joi.string(),
+    img_url: Joi.string()
   };
 
   return Joi.validate(trip, schema);
