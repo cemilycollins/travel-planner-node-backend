@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+    console.log(req.body)
   const { error } = validateTrip(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -28,7 +29,8 @@ router.post('/', async (req, res) => {
     end_date: req.body.end_date,
     img_url: req.body.img_url
   });
-  trip = await trip.save();
+
+  trip = await trip.save().catch(err=>console.log(err));
   
   res.send(trip);
 });
