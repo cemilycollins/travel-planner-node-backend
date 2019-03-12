@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "10.x"
+  },
   "name": "travel-planner-node-backend",
   "version": "1.0.0",
   "description": "",
