@@ -13,7 +13,7 @@ const Accommodation = mongoose.model('Accommodation', new mongoose.Schema({
 }));
 
 router.get('/', async (req, res) => {
-  const accommodations = await Accommodation.find().sort('start_date');
+  const accommodations = await Accommodation.find({trip_id: req.params.trip_id}).sort('start_date');
   res.send(accommodations);
 });
 

@@ -13,7 +13,7 @@ const Experience = mongoose.model('Experience', new mongoose.Schema({
 }));
 
 router.get('/', async (req, res) => {
-  const experiences = await Experience.find().sort('start_date');
+  const experiences = await Experience.find({trip_id: req.params.trip_id}).sort('date');
   res.send(experiences);
 });
 

@@ -16,7 +16,7 @@ const Ticket = mongoose.model('Ticket', new mongoose.Schema({
 }));
 
 router.get('/', async (req, res) => {
-  const tickets = await Ticket.find().sort('departure_date_time');
+  const tickets = await Ticket.find({trip_id: req.params.trip_id}).sort('departure_date_time');
   res.send(tickets);
 });
 

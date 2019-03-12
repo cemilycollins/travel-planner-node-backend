@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const cors = require('cors')
 const trips = require('./routes/trip');
 const accommodations = require('./routes/accommodation');
 const tickets = require('./routes/ticket');
@@ -12,6 +13,7 @@ mongoose.connect(URL)
   .catch(err => console.error('Could not connect to MongoDB...'));
 
 app.use(express.json());
+app.use(cors())
 app.use('/api/trips', trips);
 app.use('/api/trips/:trip_id/accommodations', accommodations);
 app.use('/api/trips/:trip_id/tickets', tickets);
