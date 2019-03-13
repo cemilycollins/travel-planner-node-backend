@@ -16,9 +16,9 @@ mongoose.connect(URL); // connect to our database
 app.use(express.json());
 app.use(cors())
 app.use('/api/trips', trips);
-app.use('/api/trips/:trip_id/accommodations', accommodations);
-app.use('/api/trips/:trip_id/tickets', tickets);
-app.use('/api/trips/:trip_id/experiences', experiences);
+app.use('/api/trips/accommodations', accommodations);
+app.use('/api/trips/tickets', tickets);
+app.use('/api/trips/experiences', experiences);
 
 const port = process.env.PORT || 3000;
 // app.listen(port);
