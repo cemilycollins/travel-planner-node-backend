@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
     price: req.body.price,
     relevant_info: req.body.relevant_info,
     purchased: req.body.purchased,
-    trip_id: req.body.trip_id
+    trip_id: req.params.trip_id
   });
   ticket = await ticket.save();
   
@@ -53,7 +53,7 @@ router.put('/:id', async (req, res) => {
         price: req.body.price,
         relevant_info: req.body.relevant_info,
         purchased: req.body.purchased,
-        trip_id: req.body.trip_id
+        trip_id: req.params.trip_id
     }, {
     new: true
   });
