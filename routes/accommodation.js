@@ -13,7 +13,7 @@ const Accommodation = mongoose.model('Accommodation', new mongoose.Schema({
 }));
 
 router.get('/', async (req, res) => {
-  const accommodations = await Accommodation.find({trip_id: req.params.trip_id}).sort('start_date');
+  const accommodations = await Accommodation.find({trip_id: req.body.trip_id}).sort('start_date');
   res.send(accommodations);
 });
 
@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
     end_date: req.body.end_date,
     city: req.body.city,
     relevant_info: req.body.relevant_info,
-    trip_id: req.params.trip_id
+    trip_id: req.body.trip_id
   });
   accommodation = await accommodation.save();
   
@@ -44,7 +44,7 @@ router.put('/:id', async (req, res) => {
     end_date: req.body.end_date,
     city: req.body.city,
     relevant_info: req.body.relevant_info,
-    trip_id: req.params.trip_id
+    trip_id: req.body.trip_id
     }, {
     new: true
   });
