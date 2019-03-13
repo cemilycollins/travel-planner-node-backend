@@ -15,7 +15,7 @@ const Ticket = mongoose.model('Ticket', new mongoose.Schema({
     trip_id: String
 }));
 
-router.get('/', async (req, res) => {
+router.get('/:trip_id', async (req, res) => {
   const tickets = await Ticket.find({trip_id: req.params.trip_id}).sort('departure_date_time');
   res.send(tickets);
 });
@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
     price: req.body.price,
     relevant_info: req.body.relevant_info,
     purchased: req.body.purchased,
-    trip_id: req.params.trip_id
+    trip_id: req.body.trip_id
   });
   ticket = await ticket.save();
   
@@ -53,7 +53,7 @@ router.put('/:id', async (req, res) => {
         price: req.body.price,
         relevant_info: req.body.relevant_info,
         purchased: req.body.purchased,
-        trip_id: req.params.trip_id
+        trip_id: req.body.trip_id
     }, {
     new: true
   });

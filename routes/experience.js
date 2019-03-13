@@ -12,7 +12,7 @@ const Experience = mongoose.model('Experience', new mongoose.Schema({
     trip_id: String
 }));
 
-router.get('/', async (req, res) => {
+router.get('/:trip_id', async (req, res) => {
   const experiences = await Experience.find({trip_id: req.params.trip_id}).sort('date');
   res.send(experiences);
 });
@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
     address: req.body.address,
     city: req.body.city,
     relevant_info: req.body.relevant_info,
-    trip_id: req.params.trip_id
+    trip_id: req.body.trip_id
   });
   experience = await experience.save();
   
@@ -44,7 +44,7 @@ router.put('/:id', async (req, res) => {
         address: req.body.address,
         city: req.body.city,
         relevant_info: req.body.relevant_info,
-        trip_id: req.params.trip_id
+        trip_id: req.body.trip_id
     }, {
     new: true
   });
