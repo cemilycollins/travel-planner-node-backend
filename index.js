@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient
 const cors = require('cors')
+import { pw } from './config.js'
 const trips = require('./routes/trip');
 const accommodations = require('./routes/accommodation');
 const tickets = require('./routes/ticket');
@@ -9,7 +10,7 @@ const app = express();
 
 var mongoose = require('mongoose');
 
-const URL = 'mongodb+srv://eco:hello@travelplanner-sxsmf.mongodb.net/test?retryWrites=true'
+const URL = `mongodb+srv://eco:${pw}@travelplanner-sxsmf.mongodb.net/test?retryWrites=true`
 const client = new MongoClient(URL, { useNewUrlParser: true });
 mongoose.connect(URL); // connect to our database
 
